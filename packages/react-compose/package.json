@@ -1,5 +1,5 @@
 {
-  "name": "react-compose",
+  "name": "@priv-compose/react-compose",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "JD Huntington <jdh@microsoft.com>",
@@ -22,5 +22,14 @@
   },
   "bugs": {
     "url": "https://github.com/jdhuntington/react-compose/issues"
+  },
+  "devDependencies": {
+    "@types/jss": "^9.5.8",
+    "@types/react": "^16.9.2",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "jss": "^9.8.7",
+    "react": "^16.9.0"
   }
 }

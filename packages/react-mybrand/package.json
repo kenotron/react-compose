@@ -1,5 +1,5 @@
 {
-  "name": "react-mybrand",
+  "name": "@priv-compose/react-mybrand",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "JD Huntington <jdh@microsoft.com>",
@@ -22,5 +22,10 @@
   },
   "bugs": {
     "url": "https://github.com/jdhuntington/react-compose/issues"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "@priv-compose/react-base": "^0.0.0",
+    "@priv-compose/react-compose": "^0.0.0"
   }
 }
