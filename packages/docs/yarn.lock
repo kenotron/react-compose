@@ -6623,9 +6623,9 @@ minimist@~0.0.1:
   integrity sha1-3j+YVD2/lggr5IrRoMfNqDYwHc8=
 
 minipass@^2.2.1, minipass@^2.6.0, minipass@^2.6.4:
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.6.4.tgz#c15b8e86d1ecee001652564a2c240c0b6e58e817"
-  integrity sha512-D/+wBy2YykFsCcWvaIslCKKus5tqGQZ8MhEzNx4mujLNgHhXWaaUOZkok6/kztAlTt0QkYLEyIShrybNmzoeTA==
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.6.5.tgz#1c245f9f2897f70fd4a219066261ce6c29f80b18"
+  integrity sha512-ewSKOPFH9blOLXx0YSE+mbrNMBFPS+11a2b03QZ+P4LVrUHW/GAlqeYC7DBknDyMWkHzrzTpDhUvy7MUxqyrPA==
   dependencies:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
@@ -7828,15 +7828,15 @@ react-dev-utils@^9.0.0:
     text-table "0.2.0"
 
 react-docgen-typescript-loader@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.2.0.tgz#137afca0d96211b82685253eb7397dab2ee43920"
-  integrity sha512-FL7H3yXNkcsQD/OKwReJ1i8faqaarRBzpjZd/pNtpz4nH6hx1h/oWkmaIaL8I2YaY4moPaNgAoi2PAMA9o0K7A==
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/react-docgen-typescript-loader/-/react-docgen-typescript-loader-3.2.1.tgz#5aaf059eba5b8054afc6f7c3b45df471515d90a0"
+  integrity sha512-k3yY+nJ0Q6O/86OmdSKKEaVH3rDIn9XNvi/UfGA1BiI7AymvrkggFDzHTNbDy9wPtZA2Cc6T7tLH7xU6nSb1wQ==
   dependencies:
     "@webpack-contrib/schema-utils" "^1.0.0-beta.0"
     loader-utils "^1.2.3"
-    react-docgen-typescript "^1.14.0"
+    react-docgen-typescript "^1.14.1"
 
-react-docgen-typescript@^1.14.0:
+react-docgen-typescript@^1.14.1:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/react-docgen-typescript/-/react-docgen-typescript-1.14.1.tgz#92671c480eb84e53cf8b7e845a0591c9fc061f8d"
   integrity sha512-LQAK5dAtVmDwf+WHjIgBdF1v+uCeBzeYw3igC7rOxo1+j0uSHVppiKnJIXm7qnv+LPSjTwAkhGQHTE0dUVTeoQ==

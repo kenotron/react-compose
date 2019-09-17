@@ -8,3 +8,4 @@ var jss_preset_default_1 = __importDefault(require("jss-preset-default"));
 exports.initializeJss = function () {
     jss_1.default.setup(jss_preset_default_1.default());
 };
+//# sourceMappingURL=jss.js.map

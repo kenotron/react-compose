@@ -81,3 +81,4 @@ exports.compose = function (Component) {
         return Result;
     };
 };
+//# sourceMappingURL=index.jsx.map

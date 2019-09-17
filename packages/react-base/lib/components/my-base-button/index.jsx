@@ -20,3 +20,4 @@ exports.MyBaseButton = function (props) {
       <pre>{JSON.stringify(props.classes, null, 2)}</pre>
     </div>);
 };
+//# sourceMappingURL=index.jsx.map
