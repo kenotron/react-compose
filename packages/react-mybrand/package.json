@@ -1,11 +1,14 @@
 {
-  "name": "@priv-compose/react-mybrand",
-  "version": "0.0.0",
-  "description": "> TODO: description",
   "author": "JD Huntington <jdh@microsoft.com>",
-  "homepage": "https://github.com/jdhuntington/react-compose#readme",
-  "license": "ISC",
-  "main": "lib/react-mybrand.js",
+  "bugs": {
+    "url": "https://github.com/jdhuntington/react-compose/issues"
+  },
+  "dependencies": {
+    "@priv-compose/react-base": "^0.0.0",
+    "@priv-compose/react-compose": "^0.0.0",
+    "react": "^16.9.0"
+  },
+  "description": "> TODO: description",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -13,19 +16,17 @@
   "files": [
     "lib"
   ],
+  "homepage": "https://github.com/jdhuntington/react-compose#readme",
+  "license": "ISC",
+  "main": "lib/react-mybrand.js",
+  "name": "@priv-compose/react-mybrand",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jdhuntington/react-compose.git"
   },
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
-  "bugs": {
-    "url": "https://github.com/jdhuntington/react-compose/issues"
-  },
-  "dependencies": {
-    "react": "^16.9.0",
-    "@priv-compose/react-base": "^0.0.0",
-    "@priv-compose/react-compose": "^0.0.0"
-  }
+  "version": "0.0.0"
 }
