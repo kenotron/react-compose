@@ -1,6 +1,8 @@
 import jss from "jss";
 import * as React from "react";
 
+import { initializeJss } from "./jss";
+import { Theme } from "./theme";
 import { useTheme } from "./theme-context";
 
 const resolveWith = (func: any, obj: any) =>
@@ -27,6 +29,7 @@ function merge(a: any, b: any, c: any) {
 }
 
 const _getClasses = ({ theme, name, optionsSet }: any) => {
+  initializeJss();
   let tokens: any = {};
   optionsSet.forEach((options: any) => {
     if (options && options.tokens && typeof options.tokens === "function") {
@@ -55,6 +58,7 @@ export interface ComposedOptions {
   name: string;
   slots: any;
   slotProps: any;
+  defaultTheme: Theme;
 }
 
 export const compose = (Component: React.FunctionComponent) => {
@@ -67,7 +71,10 @@ export const compose = (Component: React.FunctionComponent) => {
     Component = (Component as any).__parentComponent || Component;
 
     const Result = (props: any) => {
-      const theme = useTheme();
+      const theme = (useTheme() || options.defaultTheme)!;
+      if (!theme) {
+        console.warn("No theme specified, behavior undefined.");
+      }
 
       if (!classNamesCache.has(theme)) {
         classNamesCache.set(theme, _getClasses({ theme, name, optionsSet }));

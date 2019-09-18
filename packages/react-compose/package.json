@@ -1,11 +1,19 @@
 {
-  "name": "@priv-compose/react-compose",
-  "version": "0.0.0",
-  "description": "> TODO: description",
   "author": "JD Huntington <jdh@microsoft.com>",
-  "homepage": "https://github.com/jdhuntington/react-compose#readme",
-  "license": "ISC",
-  "main": "lib/react-compose.js",
+  "bugs": {
+    "url": "https://github.com/jdhuntington/react-compose/issues"
+  },
+  "dependencies": {
+    "jss": "^9.8.7",
+    "jss-preset-default": "^4.5.0",
+    "react": "^16.9.0"
+  },
+  "description": "> TODO: description",
+  "devDependencies": {
+    "@types/jss": "^9.5.8",
+    "@types/react": "^16.9.2",
+    "typescript": "^3.6.3"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -13,23 +21,17 @@
   "files": [
     "lib"
   ],
+  "homepage": "https://github.com/jdhuntington/react-compose#readme",
+  "license": "ISC",
+  "main": "lib/react-compose.js",
+  "name": "@priv-compose/react-compose",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jdhuntington/react-compose.git"
   },
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
-  "bugs": {
-    "url": "https://github.com/jdhuntington/react-compose/issues"
-  },
-  "devDependencies": {
-    "@types/jss": "^9.5.8",
-    "@types/react": "^16.9.2",
-    "typescript": "^3.6.3"
-  },
-  "dependencies": {
-    "jss": "^9.8.7",
-    "react": "^16.9.0"
-  }
+  "version": "0.0.0"
 }

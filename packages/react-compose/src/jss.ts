@@ -1,5 +1,10 @@
 import jss from "jss";
 import preset from "jss-preset-default";
+
+let initialized = false;
 export const initializeJss = () => {
-  jss.setup(preset());
+  if (!initialized) {
+    jss.setup(preset());
+  }
+  initialized = true;
 };
