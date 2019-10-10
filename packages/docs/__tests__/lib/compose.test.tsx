@@ -1,5 +1,7 @@
 import * as React from "react";
-import { compose } from "../../src/lib/compose";
+import { _composeFactory } from "../../src/lib/compose";
+
+const compose = _composeFactory(() => undefined);
 
 const baseComponent = () => {
   // In a function so that side effects from compose don't affect the next run
@@ -44,6 +46,7 @@ describe("compose", () => {
       { slots: { bar: "baz" } }
     ]);
   });
+
   describe("resolveSlots", () => {
     it("merges slots that don't overlap (simple)", () => {
       expect(compose.resolveSlots([{ slots: { foo: "bar" } }])).toEqual({
@@ -68,6 +71,19 @@ describe("compose", () => {
         button: "button",
         x: "y"
       });
+    });
+  });
+
+  it("calls the base component with correct slot values", () => {
+    const mock = jest.fn();
+    const composed = compose(
+      mock,
+      { name: "Mock" }
+    );
+    composed({});
+    expect(mock).toBeCalledWith({
+      slots: {},
+      slotProps: {}
     });
   });
 });
