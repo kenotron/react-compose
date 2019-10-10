@@ -24,8 +24,14 @@ export const compose = <TProps = {}>(
   const renderFn = (baseComponent as any).__directRender || baseComponent;
 
   let mergedOptions = {};
+  const slots = {};
   optionsSet.forEach(o => {
     mergedOptions = { ...mergedOptions, ...o };
+    if (o.slots) {
+      Object.keys(o.slots).forEach(k => {
+        slots[k] = o.slots[k];
+      });
+    }
   });
 
   const Component = (props: TProps) => {
@@ -41,10 +47,12 @@ export const compose = <TProps = {}>(
       classNamesCache,
       optionsSet
     );
+
     return renderFn({
       ...props,
       slotProps: resolvedSlotProps,
-      theme
+      theme,
+      slots
     } as any);
   };
 

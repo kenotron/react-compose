@@ -1,7 +1,9 @@
-'use strict';
+"use strict";
 
-const docs = require('..');
+const docs = require("..");
 
-describe('docs', () => {
-    it('needs tests');
+describe("docs", () => {
+  it("needs tests", () => {
+    expect(1).toEqual(1);
+  });
 });
