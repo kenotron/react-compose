@@ -5,6 +5,9 @@ import { initializeJss } from "./jss";
 import { Theme } from "./theme";
 import { useTheme } from "./theme-context";
 
+type Options = any;
+type SlotsAssignment = any;
+
 /**
  * Composed allows you to create composed components, which
  * have configurable, themable state, view, and slots.
@@ -13,7 +16,7 @@ import { useTheme } from "./theme-context";
  */
 export const compose = <TProps = {}>(
   baseComponent: React.SFC,
-  options?: any
+  options?: Options
 ) => {
   const classNamesCache = new WeakMap();
   let optionsSet = [options];
@@ -66,6 +69,22 @@ export const compose = <TProps = {}>(
 
   return Component;
 };
+
+const resolveSlots = (optionsSet: Options[]): SlotsAssignment => {
+  const result = {};
+  if (optionsSet && optionsSet.length > 0) {
+    optionsSet.forEach(os => {
+      if (os.slots) {
+        Object.keys(os.slots).forEach(k => {
+          result[k] = os.slots[k];
+        });
+      }
+    });
+  }
+  return result;
+};
+
+compose.resolveSlots = resolveSlots;
 
 function _getSlotProps(
   name: string,
