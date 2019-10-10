@@ -27,14 +27,9 @@ export const _composeFactory = (themeHook: any = useTheme) => {
     const renderFn = (baseComponent as any).__directRender || baseComponent;
 
     let mergedOptions = {};
-    const slots = {};
+    const slots = resolveSlots(optionsSet);
     optionsSet.forEach(o => {
       mergedOptions = { ...mergedOptions, ...o };
-      if (o.slots) {
-        Object.keys(o.slots).forEach(k => {
-          slots[k] = o.slots[k];
-        });
-      }
     });
 
     const Component = (props: TProps) => {
@@ -44,7 +39,7 @@ export const _composeFactory = (themeHook: any = useTheme) => {
       }
 
       const resolvedSlotProps = _getSlotProps(
-        options.name || "WARNINGUNNAMED",
+        options.name || "WARNING-UNNAMED",
         props,
         theme,
         classNamesCache,
@@ -63,7 +58,8 @@ export const _composeFactory = (themeHook: any = useTheme) => {
     }
 
     Component.__optionsSet = optionsSet;
-    Component.__directRender = baseComponent;
+    Component.__directRender =
+      (baseComponent as any).__directRender || baseComponent;
     Component.displayName = options.name || "Composed Component";
 
     return Component;
@@ -145,7 +141,5 @@ const _getClasses = (name: string, theme: Theme, optionsSet: any[]) => {
     classNamePrefix: name + "-"
   });
   sheet.attach();
-  console.log({ name, tokens, styles, classes: sheet.classes });
-
   return sheet.classes;
 };

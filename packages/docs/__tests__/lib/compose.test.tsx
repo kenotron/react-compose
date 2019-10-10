@@ -19,6 +19,7 @@ describe("compose", () => {
     );
     expect(typeof composed).toEqual("function");
   });
+
   it("sets options on the result", () => {
     const composed: any = compose(
       baseComponent(),
@@ -26,6 +27,7 @@ describe("compose", () => {
     );
     expect(composed.__optionsSet).toEqual([{}]);
   });
+
   it("sets complicated options on the result", () => {
     const composed: any = compose(
       baseComponent(),
@@ -33,6 +35,34 @@ describe("compose", () => {
     );
     expect(composed.__optionsSet).toEqual([{ foo: { bar: "baz" } }]);
   });
+
+  it("sets direct render on the resulting component for recomposition", () => {
+    const baseComponentInstance = baseComponent();
+    const composed: any = compose(
+      baseComponentInstance,
+      {}
+    );
+    expect(composed.__directRender).toEqual(baseComponentInstance);
+  });
+
+  it("sets direct render on the resulting component for recomposition when nested", () => {
+    const baseComponentInstance = baseComponent();
+    const composed: any = compose(
+      compose(
+        compose(
+          compose(
+            baseComponentInstance,
+            {}
+          ),
+          {}
+        ),
+        {}
+      ),
+      {}
+    );
+    expect(composed.__directRender).toEqual(baseComponentInstance);
+  });
+
   it("stacks optionSets", () => {
     const composed: any = compose(
       compose(
@@ -83,6 +113,49 @@ describe("compose", () => {
     composed({});
     expect(mock).toBeCalledWith({
       slots: {},
+      slotProps: {}
+    });
+  });
+
+  it("calls the base component with correct slot values when slots have been mixed", () => {
+    const mock = jest.fn();
+    const composed = compose(
+      compose(
+        compose(
+          mock,
+          { name: "Mock", slots: { foo: "foo", bar: "bar" } }
+        ),
+        {
+          name: "Mock2",
+          slots: { baz: "baz2", bar: "bar2" }
+        }
+      ),
+      {
+        name: "Mock3",
+        slots: { foo: "foo3" }
+      }
+    );
+    composed({});
+    expect(mock).toBeCalledWith({
+      slots: {
+        foo: "foo3",
+        bar: "bar2",
+        baz: "baz2"
+      },
+      slotProps: {}
+    });
+  });
+
+  it("calls the base component with correct slot values, mixing in props", () => {
+    const mock = jest.fn();
+    const composed = compose(
+      mock,
+      { name: "Mock" }
+    );
+    composed({ foo: "bar" });
+    expect(mock).toBeCalledWith({
+      slots: {},
+      foo: "bar",
       slotProps: {}
     });
   });
