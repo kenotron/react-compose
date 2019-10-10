@@ -15,18 +15,8 @@ export const withEmoji = () => (
   </MyButton>
 );
 
-export const both = () => (
-  <div>
-    <MyButton onClick={action("onClick")}>Hello Button</MyButton>
-    <MyButton disabled onClick={action("onClick")}>
-      Hello Button
-    </MyButton>
-  </div>
-);
-
 const stories = storiesOf("@priv-compose/react-mybrand/MyButton", module);
 
 stories.add("Default", withText, { info: { inline: true } });
 
 stories.add("It has the emojis", withEmoji, { info: { inline: true } });
-stories.add("It is disabled", both, { info: { inline: true } });

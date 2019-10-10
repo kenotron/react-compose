@@ -33,7 +33,7 @@ export const ButtonTokens = (theme: Theme) => {
     width: undefined,
     textFamily: "inherit",
     textSize: 14,
-    textWeight: "strong"
+    textWeight: "bold"
   };
 };
 
@@ -46,7 +46,6 @@ export const ButtonStyles = (
   return {
     root: {
       alignItems: "center",
-      backgroundColor: tokens.backgroundColor,
       borderColor: tokens.borderColor,
       borderRadius: tokens.borderRadius,
       borderStyle: tokens.borderStyle,
@@ -91,10 +90,22 @@ export const ButtonStyles = (
         color: tokens.colorPressed
       }
     },
+    rootDisabled: {
+      backgroundColor: "#999",
+      "& $content": {
+        fontWeight: 100
+      }
+    },
+    rootEnabled: {
+      backgroundColor: tokens.backgroundColor,
+      "& $content": {
+        fontWeight: tokens.textWeight,
+        color: "white"
+      }
+    },
     content: {
       fontFamily: tokens.textFamily,
       fontSize: tokens.textSize,
-      fontWeight: tokens.textWeight,
       overflow: "visible"
     }
   };
