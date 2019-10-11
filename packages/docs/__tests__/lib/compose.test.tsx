@@ -2,7 +2,7 @@ import * as React from "react";
 import { _composeFactory } from "../../src/lib/compose";
 import { Theme } from "../../src/lib/theme";
 
-const compose = _composeFactory(() => undefined);
+const compose = _composeFactory(() => makeBlankTheme());
 
 const reifyTheme = (partial: Partial<Theme>): Theme => {
   const result = { ...partial };

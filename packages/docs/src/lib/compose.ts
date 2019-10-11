@@ -32,11 +32,12 @@ export const _composeFactory = (themeHook: any = useTheme) => {
     optionsSet.forEach(o => {
       mergedOptions = { ...mergedOptions, ...o };
     });
-    const theme: Theme = (themeHook || (mergedOptions as any).defaultTheme)!;
-
-    const slots = resolveSlots(name, optionsSet, theme);
 
     const Component = (props: TProps) => {
+      const theme: Theme = (themeHook() ||
+        (mergedOptions as any).defaultTheme)!;
+      const slots = resolveSlots(name, optionsSet, theme);
+
       if (!theme) {
         console.warn("No theme specified, behavior undefined."); // eslint-disable-line no-console
       }
