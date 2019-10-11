@@ -27,20 +27,22 @@ export const _composeFactory = (themeHook: any = useTheme) => {
 
     const renderFn = (baseComponent as any).__directRender || baseComponent;
 
+    const name = options.name || "WARNING-UNNAMED";
     let mergedOptions = {};
-    const slots = resolveSlots(optionsSet);
     optionsSet.forEach(o => {
       mergedOptions = { ...mergedOptions, ...o };
     });
+    const theme: Theme = (themeHook || (mergedOptions as any).defaultTheme)!;
+
+    const slots = resolveSlots(name, optionsSet, theme);
 
     const Component = (props: TProps) => {
-      const theme: Theme = (themeHook || (mergedOptions as any).defaultTheme)!;
       if (!theme) {
         console.warn("No theme specified, behavior undefined."); // eslint-disable-line no-console
       }
 
       const resolvedSlotProps = _getSlotProps(
-        options.name || "WARNING-UNNAMED",
+        name,
         props,
         theme,
         classNamesCache,
@@ -76,7 +78,11 @@ export const _composeFactory = (themeHook: any = useTheme) => {
     return tokens;
   };
 
-  const resolveSlots = (optionsSet: Options[]): SlotsAssignment => {
+  const resolveSlots = (
+    name: string,
+    optionsSet: Options[],
+    theme: Theme
+  ): SlotsAssignment => {
     const result = {};
     if (optionsSet && optionsSet.length > 0) {
       optionsSet.forEach(os => {
@@ -85,6 +91,16 @@ export const _composeFactory = (themeHook: any = useTheme) => {
             result[k] = os.slots[k];
           });
         }
+      });
+    }
+    if (
+      theme &&
+      theme.components &&
+      theme.components[name] &&
+      typeof theme.components[name] === "object"
+    ) {
+      Object.keys(theme.components[name]).forEach(k => {
+        result[k] = theme.components[name][k];
       });
     }
     return result;

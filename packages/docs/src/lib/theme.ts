@@ -1,4 +1,5 @@
 export interface Theme {
-  brandColor: string
-  brandDarkColor: string
+  brandColor: string;
+  brandDarkColor: string;
+  components: any;
 }
