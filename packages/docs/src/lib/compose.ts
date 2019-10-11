@@ -7,6 +7,7 @@ import { useTheme } from "./theme-context";
 
 type Options = any;
 type SlotsAssignment = any;
+type Tokens = any;
 
 /** _composeFactory returns a compose function.
  * This allows tests to override aspects of compose.
@@ -65,6 +66,16 @@ export const _composeFactory = (themeHook: any = useTheme) => {
     return Component;
   };
 
+  const resolveTokens = (optionsSet: Options[], theme: Theme): Tokens => {
+    let tokens: any = {};
+    optionsSet.forEach((options: any) => {
+      if (options && options.tokens && typeof options.tokens === "function") {
+        tokens = { ...tokens, ...options.tokens(theme) };
+      }
+    });
+    return tokens;
+  };
+
   const resolveSlots = (optionsSet: Options[]): SlotsAssignment => {
     const result = {};
     if (optionsSet && optionsSet.length > 0) {
@@ -79,6 +90,7 @@ export const _composeFactory = (themeHook: any = useTheme) => {
     return result;
   };
 
+  compose.resolveTokens = resolveTokens;
   compose.resolveSlots = resolveSlots;
   return compose;
 };

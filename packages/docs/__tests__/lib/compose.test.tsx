@@ -1,5 +1,6 @@
 import * as React from "react";
 import { _composeFactory } from "../../src/lib/compose";
+import { Theme } from "../../src/lib/theme";
 
 const compose = _composeFactory(() => undefined);
 
@@ -9,6 +10,11 @@ const baseComponent = () => {
     return <div />;
   };
   return c;
+};
+
+const nullTheme: Theme = {
+  brandColor: "",
+  brandDarkColor: ""
 };
 
 describe("compose", () => {
@@ -157,6 +163,28 @@ describe("compose", () => {
       slots: {},
       foo: "bar",
       slotProps: {}
+    });
+  });
+
+  describe("tokens", () => {
+    it("merges tokens that don't overlap (simple)", () => {
+      const tokenObj = { foo: "bar" };
+      const options = [{ tokens: () => tokenObj }];
+      expect(compose.resolveTokens(options, nullTheme)).toEqual(tokenObj);
+    });
+
+    it("allows downstream components to override partial token definitions", () => {
+      const baseTokens = { foo: "foo", bar: "bar", baz: "baz" };
+      const downstreamTokens = { bar: "barDownstream" };
+      const options = [
+        { tokens: () => baseTokens },
+        { tokens: () => downstreamTokens }
+      ];
+      expect(compose.resolveTokens(options, nullTheme)).toEqual({
+        foo: "foo",
+        bar: "barDownstream",
+        baz: "baz"
+      });
     });
   });
 });
