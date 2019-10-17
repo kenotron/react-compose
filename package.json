@@ -2,6 +2,11 @@
   "devDependencies": {
     "lerna": "^3.16.4"
   },
+  "scripts": {
+    "build": "lerna run build --stream",
+    "storybook": "yarn workspace @priv-compose/docs storybook",
+    "start": "yarn storybook"
+  },
   "name": "root",
   "private": true,
   "workspaces": {

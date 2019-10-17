@@ -1,12 +1,13 @@
-import jss from "jss";
-import * as React from "react";
+import jss from 'jss';
+import * as React from 'react';
 
-import { initializeJss } from "./jss";
-import { Theme } from "./theme";
-import { useTheme } from "./theme-context";
+import { initializeJss } from './jss';
+import { Theme } from './theme';
+import { useTheme } from './theme-context';
 
-const resolveWith = (func: any, obj: any) =>
-  typeof func === "function" ? func(obj) : func;
+export { Theme };
+
+const resolveWith = (func: any, obj: any) => (typeof func === 'function' ? func(obj) : func);
 
 const _resolveRecipes = (styles: any, theme: any) => {
   const target: any = {};
@@ -14,7 +15,7 @@ const _resolveRecipes = (styles: any, theme: any) => {
   for (const name in styles) {
     const value = resolveWith(styles[name], theme);
 
-    if (typeof value === "object") {
+    if (typeof value === 'object') {
       target[name] = _resolveRecipes(value, theme);
     } else {
       target[name] = value;
@@ -32,20 +33,20 @@ const _getClasses = ({ theme, name, optionsSet }: any) => {
   initializeJss();
   let tokens: any = {};
   optionsSet.forEach((options: any) => {
-    if (options && options.tokens && typeof options.tokens === "function") {
+    if (options && options.tokens && typeof options.tokens === 'function') {
       tokens = merge({}, tokens, options.tokens(theme));
     }
   });
 
   let styles: any = {};
   optionsSet.forEach((options: any) => {
-    if (options && options.styles && typeof options.styles === "function") {
+    if (options && options.styles && typeof options.styles === 'function') {
       styles = merge({}, styles, options.styles(theme, tokens));
     }
   });
 
   const sheet = jss.createStyleSheet(styles, {
-    classNamePrefix: name + "-"
+    classNamePrefix: name + '-'
   });
   sheet.attach();
 
@@ -65,15 +66,14 @@ export const compose = (Component: React.FunctionComponent) => {
   return (options: Partial<ComposedOptions>) => {
     const classNamesCache = new WeakMap();
     const optionsSet = [...((Component as any).__optionsSet || []), options];
-    const name =
-      options.name || Component.displayName || (Component as any).name;
+    const name = options.name || Component.displayName || (Component as any).name;
 
     Component = (Component as any).__parentComponent || Component;
 
     const Result = (props: any) => {
       const theme = (useTheme() || options.defaultTheme)!;
       if (!theme) {
-        console.warn("No theme specified, behavior undefined.");
+        console.warn('No theme specified, behavior undefined.');
       }
 
       if (!classNamesCache.has(theme)) {

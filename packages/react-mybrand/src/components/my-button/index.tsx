@@ -1,7 +1,6 @@
-import { compose } from "@priv-compose/react-compose/lib/index";
-import { Theme } from "@priv-compose/react-compose/lib/theme";
-import { MyBaseButton } from "@priv-compose/react-base/lib/components/my-base-button";
-import { MyBrandTheme } from "../../theme";
+import { compose, Theme } from '@priv-compose/react-compose';
+import { MyBaseButton } from '@priv-compose/react-base/lib/components/my-base-button';
+import { MyBrandTheme } from '../../theme';
 
 export const ButtonTokens = (theme: Theme) => {
   const { effects, semanticColors } = theme;
@@ -9,7 +8,7 @@ export const ButtonTokens = (theme: Theme) => {
   return {
     borderRadius: effects.roundedCorner2,
     borderWidthFocused: 3,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderColorPressed: semanticColors.buttonBorder,
     colorPressed: semanticColors.buttonTextPressed,
     colorHovered: semanticColors.buttonTextHovered,
@@ -18,7 +17,7 @@ export const ButtonTokens = (theme: Theme) => {
     borderColorHovered: semanticColors.buttonBorder,
     color: semanticColors.buttonText,
     iconColorHovered: semanticColors.buttonTextHovered,
-    outlineColor: "transparent",
+    outlineColor: 'transparent',
     backgroundColor: semanticColors.buttonBackground,
     backgroundColorPressed: semanticColors.buttonBackgroundPressed,
     height: 30,
@@ -26,66 +25,63 @@ export const ButtonTokens = (theme: Theme) => {
       rowGap: 8,
       columnGap: 8
     },
-    contentPadding: "0px 20px",
-    cursor: "pointer",
+    contentPadding: '0px 20px',
+    cursor: 'pointer',
     minHeight: 32,
     minWidth: 100,
     width: undefined,
-    textFamily: "inherit",
+    textFamily: 'inherit',
     textSize: 14,
-    textWeight: "strong"
+    textWeight: 'strong'
   };
 };
 
-export const ButtonStyles = (
-  theme: Theme,
-  tokens: ReturnType<typeof ButtonTokens>
-) => {
+export const ButtonStyles = (theme: Theme, tokens: ReturnType<typeof ButtonTokens>) => {
   const { rowGap, columnGap } = tokens.childrenGap;
 
   return {
     root: {
-      alignItems: "center",
+      alignItems: 'center',
       backgroundColor: tokens.backgroundColor,
       borderColor: tokens.borderColor,
       borderRadius: tokens.borderRadius,
       borderStyle: tokens.borderStyle,
       borderWidth: tokens.borderWidth,
-      boxSizing: "border-box",
+      boxSizing: 'border-box',
       color: tokens.color,
       cursor: tokens.cursor,
-      display: "inline-flex",
-      flexDirection: "row",
+      display: 'inline-flex',
+      flexDirection: 'row',
       fontSize: tokens.textSize,
       fontWeight: tokens.textWeight,
       height: tokens.height,
-      justifyContent: "center",
+      justifyContent: 'center',
       margin: 0,
       minWidth: tokens.minWidth,
       minHeight: tokens.minHeight,
       outlineColor: tokens.outlineColor,
-      overflow: "hidden",
+      overflow: 'hidden',
       padding: tokens.contentPadding,
-      textAlign: "center",
-      textDecoration: "none",
-      userSelect: "none",
-      verticalAlign: "baseline",
+      textAlign: 'center',
+      textDecoration: 'none',
+      userSelect: 'none',
+      verticalAlign: 'baseline',
       width: tokens.width,
 
-      "& > *": {
+      '& > *': {
         marginLeft: `${0.5 * rowGap}px ${0.5 * columnGap}px`,
-        textOverflow: "ellipsis"
+        textOverflow: 'ellipsis'
       },
-      "& > *:not(:first-child)": {
+      '& > *:not(:first-child)': {
         marginLeft: `${columnGap}px`
       },
 
-      "&:hover": {
+      '&:hover': {
         backgroundColor: tokens.backgroundColorPressed,
         borderColor: tokens.borderColorHovered,
         color: tokens.colorHovered
       },
-      "&:active": {
+      '&:active': {
         backgroundColor: tokens.backgroundColorPressed,
         borderColor: tokens.borderColorPressed,
         color: tokens.colorPressed
@@ -95,13 +91,13 @@ export const ButtonStyles = (
       fontFamily: tokens.textFamily,
       fontSize: tokens.textSize,
       fontWeight: tokens.textWeight,
-      overflow: "visible"
+      overflow: 'visible'
     }
   };
 };
 
 export const MyButton = compose(MyBaseButton)({
-  name: "MyThemedButton",
+  name: 'MyThemedButton',
   styles: ButtonStyles,
   tokens: ButtonTokens,
   defaultTheme: MyBrandTheme
