@@ -1,5 +1,2 @@
-export interface Theme {
-  brandColor: string;
-  brandDarkColor: string;
-  components: any;
-}
+import { ITheme } from "@uifabric/styling";
+export type Theme = ITheme;

@@ -14,7 +14,7 @@ type Tokens = any;
  *
  * @internal
  */
-export const _composeFactory = (themeHook: any = useTheme) => {
+export const _composeFactory = <TTheme>(themeHook: any = useTheme) => {
   const compose = <TProps = {}>(
     baseComponent: React.SFC,
     options?: Options
@@ -34,7 +34,7 @@ export const _composeFactory = (themeHook: any = useTheme) => {
     });
 
     const Component = (props: TProps) => {
-      const theme: Theme = (themeHook() ||
+      const theme: TTheme = (themeHook() ||
         (mergedOptions as any).defaultTheme)!;
       const slots = resolveSlots(name, optionsSet, theme);
 
@@ -79,10 +79,10 @@ export const _composeFactory = (themeHook: any = useTheme) => {
     return tokens;
   };
 
-  const resolveSlots = (
+  const resolveSlots = <TTheme>(
     name: string,
     optionsSet: Options[],
-    theme: Theme
+    theme: any
   ): SlotsAssignment => {
     const result = {};
     if (optionsSet && optionsSet.length > 0) {
@@ -120,10 +120,10 @@ export const _composeFactory = (themeHook: any = useTheme) => {
  */
 export const compose = _composeFactory();
 
-function _getSlotProps(
+function _getSlotProps<TTheme>(
   name: string,
   props: any,
-  theme: Theme,
+  theme: TTheme,
   classNamesCache: WeakMap<any, any>,
   optionsSet: any[]
 ) {
@@ -149,7 +149,11 @@ function _getSlotProps(
   return resolvedSlotProps;
 }
 
-const _getClasses = (name: string, theme: Theme, optionsSet: any[]) => {
+const _getClasses = <TTheme>(
+  name: string,
+  theme: TTheme,
+  optionsSet: any[]
+) => {
   initializeJss();
 
   let tokens: any = {};

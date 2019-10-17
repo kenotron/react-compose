@@ -2,7 +2,7 @@ import { compose } from "../../../lib/compose";
 import { SliderProps } from "../../../base/components/slider/props";
 import { Slider as BaseSlider } from "../../../base/components/slider/slider";
 import { Theme } from "../../../lib/theme";
-import { theme as myBrandTheme } from "../../theme";
+import { FluentTheme } from "./../../theme/FluentTheme";
 
 export interface Tokens {
   trackAfterColor: any;
@@ -13,9 +13,9 @@ export interface Tokens {
 
 export const tokens = (theme: Theme): Tokens => {
   return {
-    trackBeforeColor: theme.brandColor,
+    trackBeforeColor: theme.palette.blueDark,
     thumbBackgroundColor: "white",
-    thumbBorderColor: theme.brandDarkColor,
+    thumbBorderColor: theme.palette.blueMid,
     trackAfterColor: "#bbc"
   };
 };
@@ -75,6 +75,6 @@ export const Slider = compose<SliderProps>(
     name: "Slider",
     styles,
     tokens,
-    defaultTheme: myBrandTheme
+    defaultTheme: FluentTheme
   }
 );

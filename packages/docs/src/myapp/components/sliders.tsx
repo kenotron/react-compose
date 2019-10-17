@@ -45,7 +45,7 @@ export const TrackUpdateSlider = compose<SliderProps>(
       const baseTokens = brandedTokens(theme); // get base tokens and override selectively
       return {
         ...baseTokens,
-        trackBeforeColor: theme.brandDarkColor
+        trackBeforeColor: theme.palette.greenLight
       };
     }
   }
